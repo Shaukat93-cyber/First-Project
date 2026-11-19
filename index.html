@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Student Result Manager">
+<title>Student Result Manager</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header" id="home">
+  <div>
+    <h1>Student Result Manager</h1>
+    <p>Academic Performance Tracking &amp; Result Processing System</p>
+  </div>
+  <nav aria-label="Main navigation">
+    <a href="#dashboard">Dashboard</a>
+    <a href="#add-student">Add Student</a>
+    <a href="#records">Records</a>
+    <a href="#about">About</a>
+    <a href="login.html">Login</a>
+  </nav>
+</header>
+
+<main>
+<section id="dashboard" class="container">
+  <div class="section-heading">
+    <div><h2>Dashboard</h2><p>Quick overview of student performance.</p></div>
+    <time id="today"></time>
+  </div>
+
+  <div class="summary-grid">
+    <article class="summary-card">
+      <span>Total Students</span>
+      <strong id="totalStudents">0
+      </strong>
+    </article>
+    <article class="summary-card">
+      <span>Passed Students</span>
+      <strong id="passedStudents">0
+
+      </strong>
+    </article>
+    <article class="summary-card">
+      <span>Failed Students</span>
+      <strong id="failedStudents">0
+
+      </strong>
+    </article>
+    <article class="summary-card">
+      <span>Average Percentage</span>
+      <strong id="averagePercentage">0.00%
+
+      </strong></article>
+  </div>
+
+  <div class="progress-panel">
+    <label for="passProgress">Overall pass percentage</label>
+    <progress id="passProgress" value="0" max="100">0%</progress>
+    <meter id="averageMeter" min="0" max="100" value="0">0%</meter>
+  </div>
+</section>
+
+<section id="add-student" class="container">
+  <div class="section-heading">
+    <div><h2>Add Student Record</h2><p>Enter student details and marks out of 100.</p></div>
+  </div>
+
+  <form id="studentForm">
+    <fieldset>
+      <legend>Student Information</legend>
+      <div class="form-grid">
+        <div class="field"><label for="studentName">Student Full Name</label>
+          <input id="studentName" type="text" placeholder="e.g. Saniya Shaikh" required></div>
+        <div class="field"><label for="rollNumber">Roll Number</label>
+          <input id="rollNumber" type="text" placeholder="e.g. CS24001" required></div>
+        <div class="field"><label for="studentClass">Class / Year</label>
+          <select id="studentClass" required>
+            <option value="">Select class</option>
+            <optgroup label="Engineering">
+              <option>First Year</option><option>Second Year</option>
+              <option>Third Year</option><option>Final Year</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option>Class 10</option><option>Class 12</option>
+            </optgroup>
+          </select></div>
+        <div class="field"><label for="department">Department</label>
+          <input id="department" type="text" placeholder="e.g. Computer Science" required></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Subject Marks</legend>
+      <div class="form-grid marks-grid">
+        <div class="field">
+          <label for="english">English</label>
+          <input id="english" type="number" min="0" max="100" placeholder="0-100" required>
+        </div>
+        <div class="field">
+          <label for="maths">Mathematics</label>
+          <input id="maths" type="number" min="0" max="100" placeholder="0-100" required>
+        </div>
+        <div class="field">
+          <label for="science">Science</label>
+          <input id="science" type="number" min="0" max="100" placeholder="0-100" required>
+        </div>
+        <div class="field">
+          <label for="programming">Programming</label>
+          <input id="programming" type="number" min="0" max="100" placeholder="0-100" required>
+        </div>
+        <div class="field">
+          <label for="dataStructure">Data Structure</label>
+          <input id="dataStructure" type="number" min="0" max="100" placeholder="0-100" required>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit">Add Student</button>
+      <button type="reset" class="secondary-btn">Clear</button>
+    </div>
+  </form>
+  <output id="formMessage" class="form-message"></output>
+</section>
+
+<section id="records" class="container">
+  <div class="section-heading">
+    <div><h2>Student Records</h2><p>View, search and manage student results.</p></div>
+    <label class="search-box">Search
+      <input id="searchInput" type="search" placeholder="Name or roll number">
+    </label>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <caption>Student academic result records</caption>
+      <thead><tr>
+        <th>Roll No.</th>
+        <th>Name</th>
+        <th>Class</th>
+        <th>Total / 500</th>
+        <th>Percentage</th>
+        <th>Grade</th>
+        <th>Result</th>
+        <th>Action</th>
+      </tr></thead>
+      <tbody id="studentTableBody">
+        <tr><td colspan="8">No student records added yet.</td></tr>
+      </tbody>
+      <tfoot><tr>
+        <td colspan="3">Class Average</td>
+        <td id="footerTotal">0 / 500</td>
+        <td id="footerAverage">0%</td>
+        <td colspan="3">Calculated automatically</td>
+      </tr></tfoot>
+    </table>
+  </div>
+</section>
+
+<aside class="container info-box">
+  <h2>Result Rules</h2>
+  <ul>
+    <li>Pass requires at least 40 marks in every subject.</li>
+    <li>A+ = 90% and above; A = 80-89%; B = 70-79%.</li>
+    <li>C = 60-69%; D = 50-59%; E = 40-49%.</li>
+    <li>Below 40% or a subject below 40 marks is Fail.</li>
+  </ul>
+</aside>
+
+<section id="about" class="container about-section">
+  <figure>
+    <figcaption>Student Result Manager</figcaption>
+    <p>A simple web application for recording, calculating and viewing student academic results.</p>
+  </figure>
+  <details>
+    <summary>Technologies used</summary>
+    <p><strong>HTML</strong> creates structure,
+       <strong>CSS</strong> creates the design, and 
+       <strong>JavaScript</strong> performs calculations and record management.</p>
+  </details>
+  <address>Student Result Manager Project<br>Web Application Development</address>
+</section>
+</main>
+
+<footer>
+  <p>&copy; <span id="year"></span> Student Result Manager</p>
+  <a href="#home">Back to top</a>
+</footer>
+
+<script src="script.js"></script>
+<script src="login.js"></script>
+</body>
+</html>
